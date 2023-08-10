@@ -1,0 +1,85 @@
+<odoo>
+    <record id="view_material_product_view_form" model="ir.ui.view">
+        <field name="name">material.product.view.form</field>
+        <field name="model">material.product</field>
+        <field name="arch" type="xml">
+          <form string="Material">
+            <header>
+            </header>
+            <sheet>
+                <div class="oe_button_box" name="button_box"></div>
+                <group name="material">
+                    <group name="details">
+                        <field name="name"/>
+                        <field name="code"/>
+                        <field name="type"/>
+                    </group>
+                    <group name="right">
+                    </group>
+                </group>
+                <notebook>
+                    <page string="Material" name="material_ids">
+                        <field
+                            name="material_line_ids"
+                            widget="section_and_note_one2many">
+                            <tree
+                                string="Material"
+                                editable="bottom"
+                            >
+
+                                <field name="product_id"/>
+                                <field name="suplier_id"/>
+                                <field name="buy_price"/>
+                            </tree>
+                        </field>
+                    </page>
+                </notebook>
+            </sheet>
+          </form>
+        </field>
+    </record>
+
+    <record id="view_material_product_view_tree" model="ir.ui.view">
+        <field name="name">material.product.product.view.tree</field>
+        <field name="model">material.product</field>
+        <field name="priority">4</field>
+        <field name="arch" type="xml">
+            <tree string="material">
+                <field name="name"/>
+                <field name="code"/>
+                <field name="type"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_material_product_filter" model="ir.ui.view">
+        <field name="name">material.product.list.select</field>
+        <field name="model">material.product</field>
+        <field name="arch" type="xml">
+            <search string="Search Material">
+                <field name="name" />
+                <field name="code"/>
+                <group expand="0" string="Group By">
+                    <filter string="Code" name="code" domain="[]" context="{'group_by': 'code'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+    <record id="action_material_product" model="ir.actions.act_window">
+        <field name="name">Material</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">material.product</field>
+        <field name="view_id" ref="view_material_product_view_tree"/>
+        <field name="view_mode">tree,form</field>
+        <field name="search_view_id" ref="view_material_product_filter"/>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+            Create a new material
+            </p>
+        </field>
+    </record>
+    <menuitem id="menu_material_product"
+                action="action_material_product"
+                parent="sale.product_menu_catalog"
+                sequence="5"/>
+</odoo>
