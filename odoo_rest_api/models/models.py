@@ -1,6 +1,5 @@
 from odoo import models, fields, api, _
 from odoo.exceptions import UserError
-from odoo.tools.misc import get_lang
 
 class MaterialProductLine(models.Model):
     _name = 'material.product.line'
@@ -123,13 +122,5 @@ class productProduct(models.Model):
     _inherit = 'product.product'
     
     def action_material_line(self):
-        action = self.env.ref('odoo-rest-api.action_material_product_line').read()[0]
-        domain = [('product_id', '=', self.id)]
-        action['domain'] = domain
+        action = self.env.ref('odoo_rest_api.action_material_product_line').read()[0]
         return action
-    
-    
-    
-    
-    
-    

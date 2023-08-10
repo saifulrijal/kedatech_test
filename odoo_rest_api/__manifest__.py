@@ -1,10 +1,10 @@
 {
-    'name': 'Odoo REST API',
+    'name': 'Odoo REST API V2',
     'version': '14.0.1.1',
     'description': "",
     'website': '',
     'depends': [
-        'sale',
+        'sale_management',
         'product',
         'purchase',
         'stock'
@@ -20,4 +20,7 @@
     'application': True,
     'auto_install': False,
     'license': 'LGPL-3',
+    'external_dependencies': {
+        'python': ['pypeg2']
+    }
 }
